@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 
 # Internal modules
-from src.movie_review import transform_movies_review
+from src.movies_reviews import transform_movies_review
 
 # initialisation of the api
 app = FastAPI()
