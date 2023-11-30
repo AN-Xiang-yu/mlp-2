@@ -5,19 +5,19 @@ import pandas as pd
 from src.commun import get_movies
 
 
-def transform_movies_review(movie_title) -> pd.DataFrame:
+def get_movies_overviews(movie_title) -> pd.DataFrame:
     """Transform the movie in a dataFrame.
         Args:
             movie_title: The movies' title.
         Returns:
-            movies_reviews: The movies' reviews
+            movies_overviews: The movies' overviews
     """
     # initialisations
     movies = get_movies(movie_title)
-    movies_reviews = []
+    movies_overviews = []
 
-    # get the movies' reviews
+    # get the movies' overviews
     for movie in movies:
-        movies_reviews.append(movie["overview"])
+        movies_overviews.append(movie["overview"])
 
-    return pd.DataFrame(movies_reviews)
+    return pd.DataFrame(movies_overviews, columns=["overview"])
