@@ -1,6 +1,3 @@
-# Standard imports
-import json
-
 # Installed packages
 import pandas as pd
 
@@ -17,8 +14,8 @@ def init_movies_overviews() -> str:
     return get_movies_overviews(test_movie_title)
 
 
-def test_null_get_movies_review():
-    """Test if the function get_movies_review returns null.
+def test_null_get_movies_overviews():
+    """Test if the function get_movies_overviews returns null.
     """
     # initialisation
     movies_overviews = init_movies_overviews()
@@ -26,9 +23,22 @@ def test_null_get_movies_review():
     # test
     assert movies_overviews is not None, "The movies_overviews should not null."
 
+    # check if the DataFrame is not empty
+    assert not movies_overviews.empty, "The DataFrame should not be empty."
 
-def test_type_get_movies_review():
-    """Test the type of the function get_movies_review.
+
+def test_content_get_movies_overviews():
+    """Test the function get_movies_overviews.
+    """
+    # initialisation
+    movies_overviews = init_movies_overviews()
+
+    # check if 'overview' column exists in the DataFrame
+    assert 'overview' in movies_overviews.columns, "The DataFrame should have an 'overview' column."
+
+
+def test_type_get_movies_overviews():
+    """Test the type of the function get_movies_overviews.
     """
     # initialisation
     movies_overviews = init_movies_overviews()
@@ -37,15 +47,6 @@ def test_type_get_movies_review():
     assert isinstance(
         movies_overviews, pd.DataFrame), "The function should return a pd.DataFrame."
 
-    assert isinstance(
-        movies_overviews.overview, str), "The function should return a pd.DataFrame."
-
-
-def test_content_get_movies_review():
-    """Test the function get_movies_review.
-    """
-    # initialisation
-    movies_overviews = init_movies_overviews()
-
-    # test
-    assert movies_overviews == ""
+    # ensure that every entry in the 'overview' column is a string
+    assert all(isinstance(item, str)
+               for item in movies_overviews['overview']), "Every item in the 'overview' column should be a string."
