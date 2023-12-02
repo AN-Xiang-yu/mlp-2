@@ -6,7 +6,7 @@ from src.commun import get_movies
 
 
 def get_movies_overviews(movie_title) -> pd.DataFrame:
-    """Transform the movie in a dataFrame.
+    """Get the movies overviews in a dataFrame.
         Args:
             movie_title: The movies' title.
         Returns:
