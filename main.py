@@ -1,26 +1,26 @@
 # Installed packages
 import uvicorn
-
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 
 # Internal modules
-from src.movies_overviews import get_movies_overviews
-from src.movies_info import get_movies_info
 from src.get_genres import get_genres
+from src.movies_info import get_movies_info
+from src.movies_overviews import get_movies_overviews
 
 
 # initialisation of the api
 app = FastAPI()
-# use the api read_root
+
+
 @app.get("/get_movies_genre/{movie_title}")
-def display_movies_genre(movie_title: str ):
+def display_movies_genre(movie_title: str):
+    """Get the genre of the movie.
+        Args:
+            movie_title: The movie from the movie title.
+        Returns:
+            Json Movies, realeses dates and genres.
     """
-    Get the genre of the movie.
-    Args:
-    movie: The movie from the movie title.
-    Returns:
-    Json Movies, realeses dates and genres ."""
-   
+    # get the movies' genres and put them in a json
     movies_genre = get_genres(movie_title)
     movies_genre.to_json(orient='records')
     return movies_genre
