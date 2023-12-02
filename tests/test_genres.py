@@ -7,6 +7,11 @@ import pandas as pd
 # Internal modules
 from src.get_genres import get_genres
 
+from datetime import datetime
+from unittest.mock import patch
+import tmdbsimple as tmdb
+
+
 
 def init_movies_genre() -> pd.DataFrame:
     """Initialise the movies' genres.
@@ -52,3 +57,31 @@ def test_genre_types():
         assert 'name' in row, "The name is not in the DataFrame"
         assert 'release_date' in row, "The release date is not in the DataFrame"
         assert 'genres' in row, "The genres is not in the DataFrame"
+
+
+def test_get_genres(mocker):
+        
+    # Sample data for mocking
+    sample_movies = [
+        {'genre_ids': [28, 12], 'original_title': 'Iron Man', 'release_date': '2021-01-01'},
+        {'genre_ids': [14], 'original_title': 'Iron Man', 'release_date': '2021-01-02'}
+    ]
+
+    sample_genres = {'genres': [
+        {'id': 28, 'name': 'Action'},
+        {'id': 12, 'name': 'Adventure'},
+        {'id': 14, 'name': 'Fantasy'}
+    ]}
+
+    # Mock get_movies function
+    mocker.patch('src.commun.get_movies', return_value=sample_movies)
+
+    # Mock tmdb.Genres().movie_list method
+    mocker.patch('tmdbsimple.Genres.movie_list', return_value=sample_genres)
+
+    # Call the function with a sample movie title
+    result = get_genres("Iron Man")
+
+    # Assertions
+    assert isinstance(result, pd.DataFrame), "Result should be a pandas DataFrame"
+    assert set(result.columns) == {'name', 'release_date', 'genres'}, "DataFrame should have name, release_date, and genres columns"
