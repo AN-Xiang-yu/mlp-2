@@ -4,13 +4,27 @@ import uvicorn
 from fastapi import FastAPI
 
 # Internal modules
-from modules.commun import get_movies
+from src.movies_overviews import get_movies_review
 
-
+# initialisation of the api
 app = FastAPI()
 
 
+@app.get("/get_movies_review")
+def display_movies_review(movie_title: str):
+    """Display the movies' overviews.
+        Args:
+            movie_title: The movie's title.
+        Returns:
+           movies_overviews: The movie overviews in a json.
+    """
+    # get the movies' overviews and put them in a json
+    movies_overviews = get_movies_review(
+        movie_title)
+
+    return movies_overviews.to_json(orient='records')
+
+
 if __name__ == '__main__':
-    app = FastAPI()
     # use the api read_root
     uvicorn.run(app, host="0.0.0.0", port=8000)
