@@ -73,7 +73,7 @@ def test_display_movies_info_with_mock(mocker):
         Args:
             mocker: The mocker object of pytest.
     """
-    # Sample JSON data
+    # sample JSON data
     data_mocked = pd.DataFrame([
         {"name": "The Matrix", "release_date": "2021-01-01",
             "genres": ["Action", "Adventure"], 'overview': "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth. "},
@@ -81,11 +81,11 @@ def test_display_movies_info_with_mock(mocker):
             "genres": ["Fantasy"], 'overview': "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix. "}
     ])
 
-    # Mock the get_movies_info function to return the sample DataFrame
+    # mock the get_movies_info function to return the sample DataFrame
     mock_get_movies_info = mocker.patch(
         'main.get_movies_info', return_value=data_mocked)
 
-    # Call the function with a sample movie title
+    # call the function with a sample movie title
     result = display_movies_info("The Matrix")
 
     # assert that the get_movies_overviews was called with the right argument
