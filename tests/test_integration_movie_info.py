@@ -1,5 +1,5 @@
 # Standard packages
-from datetime import date
+from datetime import date, datetime
 
 # Installed packages
 import pandas as pd
@@ -40,7 +40,7 @@ def test_content_get_movies_info():
     assert 'overview' in movies_info.columns, "The DataFrame should have an 'overview' column."
     assert 'name' in movies_info.columns, "The DataFrame should have an 'name' column."
     assert 'release_date' in movies_info.columns, "The DataFrame should have an 'release_date' column."
-    assert 'genre' in movies_info.columns, "The DataFrame should have an 'genre' column."
+    assert 'genres' in movies_info.columns, "The DataFrame should have an 'genres' column."
 
 
 def test_type_get_movies_info():
@@ -59,9 +59,9 @@ def test_type_get_movies_info():
 
     assert all(isinstance(item, str)
                for item in movies_info['name']), "Every item in the 'name' column should be a string."
-
-    assert all(isinstance(item, date)
-               for item in movies_info['release_date']), "Every item in the 'release_date' column should be a string."
-
+    
+    assert all(isinstance(datetime.strptime(item, "%Y-%m-%d").date(), date)
+            for item in movies_info['release_date']), "Every item in the 'release_date' column should be convertible to a date."
+    
     assert all(isinstance(item, list)
-               for item in movies_info['genre']), "Every item in the 'overview' column should be a string."
+               for item in movies_info['genres']), "Every item in the 'overview' column should be a string."
