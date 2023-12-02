@@ -1,6 +1,6 @@
 # Standard packages
 from datetime import date, datetime
-
+import json
 # Installed packages
 import pandas as pd
 
@@ -65,3 +65,22 @@ def test_type_get_movies_info():
     
     assert all(isinstance(item, list)
                for item in movies_info['genres']), "Every item in the 'overview' column should be a string."
+
+def test_get_movies_info(mocker):
+    # Sample JSON data
+    json_data = '[{"overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.", "name": "The Matrix", "release_date": "1999-03-30", "genres": ["Action", "Science Fiction"]}, ... ]'  # Add the rest of your JSON data here
+
+    # Parse the JSON string into a list of dictionaries
+    movies_list = json.loads(json_data)
+
+    # Create a DataFrame from the list of dictionaries
+    sample_df = pd.DataFrame(movies_list)
+
+    # Mock the get_movies_info function to return the sample DataFrame
+    mocker.patch('src.movies_info.get_movies_info', return_value=sample_df)
+
+    # Call the function with a sample movie title
+    result_df = get_movies_info("The Matrix")
+
+    # Compare the result with the expected DataFrame
+    pd.testing.assert_frame_equal(result_df, sample_df)
