@@ -22,8 +22,8 @@ def display_movies_genre(movie_title: str):
     """
     # get the movies' genres and put them in a json
     movies_genre = get_genres(movie_title)
-    movies_genre.to_json(orient='records')
-    return movies_genre
+
+    return movies_genre.to_json(orient='records')
 
 
 @app.get("/get_movies_overviews/{movie_title}")
@@ -57,5 +57,4 @@ def display_movies_info(movie_title: str):
 
 
 if __name__ == '__main__':
-    # use the api read_root
     uvicorn.run(app, host="0.0.0.0", port=8000)
