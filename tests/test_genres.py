@@ -1,15 +1,12 @@
 # Standard packages
 from datetime import date, datetime
+import pandas as pd
 
 # Installed packages
 import pandas as pd
 
 # Internal modules
 from src.get_genres import get_genres
-
-from datetime import datetime
-from unittest.mock import patch
-import tmdbsimple as tmdb
 
 
 
