@@ -3,8 +3,8 @@ import pandas as pd
 import pytest
 
 # Internal modules
-from src.movies_overviews import get_movies_overviews
 from main import display_movies_overviews
+from src.movies_overviews import get_movies_overviews
 
 
 def init_movies_overviews() -> str:
