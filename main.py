@@ -6,7 +6,7 @@ from fastapi import FastAPI
 # Internal modules
 from src.get_movie_if_adult import get_movies_adult_limit
 
-# initialisation of the api
+# initialisation of the API
 app = FastAPI()
 
 

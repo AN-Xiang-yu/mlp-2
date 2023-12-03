@@ -1,6 +1,8 @@
-# modify sys.path to get access to main.py
+# library to app into python environment
 import sys
+# modify sys.path to get access to main.py
 sys.path.append('..')
+
 # Installed packages
 import pandas as pd
 import pytest

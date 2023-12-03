@@ -10,7 +10,7 @@ def get_movies_adult_limit(movie_title) -> pd.DataFrame:
         Args:
             movie_title: The movies' title.
         Returns:
-            movies_if_adult: The movies are limited for adult or not
+            movies_if_adult: The movies are limited for adult or not.
     """
     # initialisations
     movies = get_movies(movie_title)
