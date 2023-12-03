@@ -16,7 +16,7 @@ def display_movies_adult_limit(movie_title: str):
         Args:
             movie_title: The movie's title.
         Returns:
-           movies_overviews: The movie is limited in adult or not in a json.
+           movies_overviews: The movie is limited watch in adult or not in a json.
     """
     # get the movies' adult limit and put them in a json
     movies_adult_limit = get_movies_adult_limit(
