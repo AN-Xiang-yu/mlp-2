@@ -1,19 +1,12 @@
-# library to app into python environment
-import sys
-# modify sys.path to get access to main.py
-sys.path.append('..')
+# standard packages
+import json
 
 # Installed packages
 import pandas as pd
-import pytest
-import json
-
 
 # Internal modules
-import main
-from main import display_movies_adult_limit
 from src.get_movie_if_adult import get_movies_adult_limit
-
+from main import display_movies_adult_limit
 
 
 def init_movies_adult_limit() -> str:
@@ -69,16 +62,16 @@ def test_get_movies_adult_limit_with_mocks(mocker):
             mocker: The mocker object of pytest.
     """
     # initialisation
-    json_str="[{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false}]"
+    json_str = "[{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false}]"
 
-    #Parse the JSON string into a Python list of dictionaries
-    data_list=json.loads(json_str)
-    #Create a dataframe from list
-    data_mocked=pd.DataFrame(data_list)
+    # parse the JSON string into a Python list of dictionaries
+    data_list = json.loads(json_str)
+    # create a dataframe from list
+    data_mocked = pd.DataFrame(data_list)
 
     # simulate the function
     mock_get_movies_adult_limit = mocker.patch("main.get_movies_adult_limit",
-                                             return_value=data_mocked)
+                                               return_value=data_mocked)
 
     # use the mocked function
     response = display_movies_adult_limit("The Matrix")
@@ -87,5 +80,5 @@ def test_get_movies_adult_limit_with_mocks(mocker):
     mock_get_movies_adult_limit.assert_called_once_with("The Matrix")
 
     # verify that the mocked data is the same as the result
-    response_df=pd.read_json(response,orient='records')
+    response_df = pd.read_json(response, orient='records')
     pd.testing.assert_frame_equal(response_df, data_mocked)
