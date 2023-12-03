@@ -42,21 +42,6 @@ def display_movies_overviews(movie_title: str):
     return movies_overviews.to_json(orient='records')
 
 
-@app.get("/get_movies_info/{movie_title}")
-def display_movies_info(movie_title: str):
-    """Display the movies' info.
-        Args:
-            movie_title: The movie's title.
-        Returns:
-           movies_info: The movie info in a json.
-    """
-    # get the movies' overviews and put them in a json
-    movies_info = get_movies_info(
-        movie_title)
-
-    return movies_info.to_json(orient='records')
-
-
 @app.get("/get_movies_adult_limit/{movie_title}")
 def display_movies_adult_limit(movie_title: str):
     """Display the movies' adult limit or not.
@@ -70,6 +55,21 @@ def display_movies_adult_limit(movie_title: str):
         movie_title)
 
     return movies_adult_limit.to_json(orient='records')
+
+
+@app.get("/get_movies_info/{movie_title}")
+def display_movies_info(movie_title: str):
+    """Display the movies' info.
+        Args:
+            movie_title: The movie's title.
+        Returns:
+           movies_info: The movie info in a json.
+    """
+    # get the movies' overviews and put them in a json
+    movies_info = get_movies_info(
+        movie_title)
+
+    return movies_info.to_json(orient='records')
 
 
 if __name__ == '__main__':
