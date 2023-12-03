@@ -13,7 +13,7 @@ from src.movies_overviews import get_movies_overviews
 app = FastAPI()
 
 
-@app.get("/get_movies_genre/{movie_title}")
+@app.get("/get_movies_genres/{movie_title}")
 def display_movies_genre(movie_title: str):
     """Get the genre of the movie.
         Args:
