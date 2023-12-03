@@ -1,3 +1,15 @@
 .pytest_cache/
 \src\__pychache__\
 \tests\__pychache__\
+__pycache__/main.cpython-310.pyc
+__pycache__/main.cpython-310.pyc
+src/__pycache__/__init__.cpython-310.pyc
+src/__pycache__/commun.cpython-310.pyc
+src/__pycache__/get_genres.cpython-310.pyc
+src/__pycache__/get_movie_if_adult.cpython-310.pyc
+__pycache__/main.cpython-310.pyc
+src/__pycache__/__init__.cpython-310.pyc
+src/__pycache__/commun.cpython-310.pyc
+src/__pycache__/get_genres.cpython-310.pyc
+*.pyc
+*.pyc
