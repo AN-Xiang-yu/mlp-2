@@ -1,3 +1,6 @@
+# modify sys.path to get access to main.py
+import sys
+sys.path.append('..')
 # Installed packages
 import pandas as pd
 import pytest
