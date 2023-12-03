@@ -47,6 +47,6 @@ pytest
 ```
 
 ## Contributing
-Katia ABAOUI:get_movies_genres, get_movies_info
-Wuqian MA: get_movies_adult_limit
-Xiangyu AN: get_movies_overviews, get_movies_info
+<b>Katia ABAOUI:get_movies_genres, get_movies_info</b>
+<b>Wuqian MA: get_movies_adult_limit</b>
+<b>Xiangyu AN: get_movies_overviews, get_movies_info</b>
