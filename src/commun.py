@@ -5,6 +5,8 @@ import pandas as pd
 TMDB_KEY = '6cd475d6493bd4fb6ead9f2919db145a'
 URL_MOVIE = "https://api.themoviedb.org/3/search/movie"
 ################## Functions ##################
+
+
 def get_movies(movie_title: str, year_released: str = None) -> list[dict]:
     """Get the movie from the movie title.
         Args:
