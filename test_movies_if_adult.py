@@ -57,29 +57,28 @@ def test_type_get_movies_adult_limit():
                for item in movies_adult_limit['adult']), "Every item in the 'adult' column should be a boolean(True/False)."
 
 
-def test_get_movies_adult_limit_with_mocks(mocker):
+def test_display_movies_adult_limit_with_mocks(mocker):
     """Test the function get_movies_adult_limit.
         Args:
             mocker: The mocker object of pytest.
     """
     # initialisation
     json_str="[{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false},{\"adult\":false}]"
-    #Replace 'false' with Python's False
-    json_str=json_str.replace('false','False')
+
     #Parse the JSON string into a Python list of dictionaries
-    data_list=json.loads(json_str)
+    #data_list=json.loads(json_str)
     #Create a dataframe from list
-    data_mocked=pd.DataFrame(data_list)
+    data_mocked=pd.DataFrame(json_str)
 
     # simulate the function
-    mock_get_movies_adult_limit = mocker.patch("src.get_movie_if_adult.get_movies_adult_limit",
+    mock_display_movies_adult_limit = mocker.patch("display_movies_adult_limit",
                                              return_value=data_mocked)
 
     # use the mocked function
     response = display_movies_adult_limit("The Matrix")
 
     # assert that the get_movies_adult_limit was called with the right argument
-    mock_get_movies_adult_limit.assert_called_once_with("The Matrix")
+    mock_display_movies_adult_limit.assert_called_once_with("The Matrix")
 
     # verify that the mocked data is the same as the result
     response_df=pd.read_json(response,orient='records')

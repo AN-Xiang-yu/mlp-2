@@ -21,3 +21,5 @@ def get_movies_adult_limit(movie_title) -> pd.DataFrame:
         movies_if_adult.append(movie["adult"])
 
     return pd.DataFrame(movies_if_adult, columns=["adult"])
+
+
